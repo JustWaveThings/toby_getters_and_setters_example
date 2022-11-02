@@ -12,6 +12,19 @@
     }
   </style>
   <script defer>
+    const Thermostat = (fahrenheit) => {
+      return {
+        get temperature() {
+          return 5 / 9 * (fahrenheit - 32)
+        },
+        set temperature(tempInC) {
+          fahrenheit = tempInC * 9 / 5 + 32
+        }
+      }
+    }
+
+    const thermos1 = Thermostat(88);
+    console.log(thermos1.temperature);
 
   </script>
 </head>

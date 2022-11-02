@@ -12,21 +12,92 @@
     }
   </style>
   <script defer>
-    const Thermostat = (fahrenheit) => {
+
+    const Player = (name, icon) => {
       return {
-        get temperature() {
-          return 5 / 9 * (fahrenheit - 32)
-        },
-        set temperature(tempInC) {
-          fahrenheit = tempInC * 9 / 5 + 32
-        }
+        get name() { return name },
+        get icon() { return icon },
       }
     }
 
-    const thermos1 = Thermostat(88);
-    console.log(thermos1.temperature);
-    thermos1.temperature = 25;
-    console.log(thermos1.temperature);
+    const Board = () => {
+      let board = new Array(9).fill("");
+      const at = (index) => ({
+        get value() { return board[index] },
+        set value(val) { board[index] = val }
+      })
+      const reset = () => board.fill("");
+
+      return {
+        at,
+        reset,
+        get value() { return [...board] }
+      }
+    }
+
+    const TicTacToe = (player1name, player2name) => {
+      let board = Board();
+      let player1 = Player(player1name, 'X')
+      let player2 = Player(player2name, 'O')
+      let currentPlayer = player1;
+
+      const switchPlayers = () => {
+        if (currentPlayer === player1) {
+          currentPlayer = player2
+        } else {
+          currentPlayer = player1
+        }
+      }
+
+      const checkForWin = () => {
+        const winnerList = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6],
+        ]
+
+        for (let i = 0; i < winnerList.length; i++) {
+          if (
+            game1.board[winnerList[i][0]] ===
+            game1.board[winnerList[i][1]] &&
+            game1.board[winnerList[i][0]] ===
+            game1.board[winnerList[i][2]] &&
+            game1.board[winnerList[i][0]] !== ''
+          ) {
+            console.log(game1.board[winnerList[i][0]] === game1.board[winnerList[i][1]])
+            console.log(game1.board[winnerList[i][0]])
+            return console.log('game is won')
+          } else {
+            console.log('game is not won')
+          }
+        }
+      }
+
+      return {
+        checkForWin,
+        switchPlayers,
+        board,
+        get currentPlayer() { return currentPlayer }
+      }
+    }
+
+    const game1 = TicTacToe('Jerry', 'Fran')
+    game1.board.at(0).value = game1.currentPlayer.icon;
+    console.log(game1.board.value)
+    game1.checkForWin()
+
+    //game1.switchPlayers()
+    game1.board.at(1).value = game1.currentPlayer.icon;
+    console.log(game1.board.value)
+    game1.checkForWin()
+    game1.board.at(2).value = game1.currentPlayer.icon;
+    console.log(game1.board.value)
+    game1.checkForWin()
 
   </script>
 </head>

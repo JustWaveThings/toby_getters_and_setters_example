@@ -14,10 +14,10 @@
   <script defer>
 
     const Player = (name, icon) => {
-      return {
+      return Object.freeze({
         get name() { return name },
         get icon() { return icon },
-      }
+      })
     }
 
     const Board = () => {
@@ -28,11 +28,11 @@
       })
       const reset = () => board.fill("");
 
-      return {
+      return Object.freeze({
         at,
         reset,
         get value() { return [...board] }
-      }
+      })
     }
 
     const TicTacToe = (player1name, player2name) => {
@@ -74,12 +74,12 @@
         }
       }
 
-      return {
+      return Object.freeze({
         checkForWin,
         switchPlayers,
         board,
         get currentPlayer() { return currentPlayer }
-      }
+      })
     }
 
     const game1 = TicTacToe('Jerry', 'Fran')

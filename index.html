@@ -63,17 +63,13 @@
 
         for (let i = 0; i < winnerList.length; i++) {
           if (
-            game1.board[winnerList[i][0]] ===
-            game1.board[winnerList[i][1]] &&
-            game1.board[winnerList[i][0]] ===
-            game1.board[winnerList[i][2]] &&
-            game1.board[winnerList[i][0]] !== ''
+            game1.board.value[winnerList[i][0]] ===
+            game1.board.value[winnerList[i][1]] &&
+            game1.board.value[winnerList[i][0]] ===
+            game1.board.value[winnerList[i][2]] &&
+            game1.board.value[winnerList[i][0]] !== ''
           ) {
-            console.log(game1.board[winnerList[i][0]] === game1.board[winnerList[i][1]])
-            console.log(game1.board[winnerList[i][0]])
             return console.log('game is won')
-          } else {
-            console.log('game is not won')
           }
         }
       }
